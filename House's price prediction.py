@@ -57,3 +57,37 @@ for i,col in enumerate(df.columns):
 plt.tight_layout()
 plt.subplots_adjust(top=0.95)
 plt.show()
+
+XTraining, XTest, yTraining, yTest = train_test_split(X,y, test_size=0.2, random_state=42)
+print(Fore.BLUE, "\n Evaluating different Regressors using Train-Test Split Method. Please wait...", Fore.BLACK)
+
+regressors = []
+regressors.append(("RF", "Random Forest", RandomForestRegressor(n_estimators=1000, random_state=42)))
+regressors.append(("XGB", "Extreme Gradient Boosting", XGBRegressor()))
+regressors.append(("CART", "Decision Tree", DecisionTreeRegressor()))
+regressors.append(("SVM", "Support Vectore Machine", SVR()))
+regressors.append(("KNN", "K-Nearest Neighbour", KNeighborsRegressor()))
+regressors.append(("MLR", "Multiple Linear Regression", LinearRegression()))
+regressors.append(("MLP", "Multi-layer Perceptron",
+                  MLPRegressor(hidden_layer_sizes=(13,6), activation="relu", solver="adam",
+                               max_iter=500, batch_size=10))
+                  )
+results = []
+for code, name, regressor in regressors:
+    regressor.fit(XTraining, yTraining)
+    yPredicted = regressor.predict(XTest)
+    r2 = r2_score(yTest, yPredicted)
+    mae = mean_absolute_error(yTest, yPredicted)
+    mse = mean_squared_error(yTest, yPredicted)
+    rmse = np.sqrt(mse)
+
+    results.append((code, name, regressor, round(r2,2), round(mae, 2), round(mse, 2), round(rmse, 2)))
+
+results.sort(key=lambda i : i[3])
+print(Fore.RED,"\n# Regressor \t\t\t\t\t\tTest RMSE (K$) \t Test MAE(k$) \t Test R-Squared", Fore.WHITE)
+print("-------------------------------------------------------------------------------------------------")
+i =1
+for r in results:
+    s = r[0] + " - " +r[1]
+    print("", i, " ", s, " "*(36-len(s)), " ", r[3], "\t\t\t", r[4], "\t\t\t", r[5])
+    i+=1
