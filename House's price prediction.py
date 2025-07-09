@@ -36,3 +36,7 @@ df.columns = column_names
 
 correlation_matrix = df.corr()
 
+plt.figure(figsize=(12,10))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title("Correlation Matrix Heatmap")
+plt.show()
