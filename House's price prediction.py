@@ -21,3 +21,8 @@ scriptFolder = os.path.dirname((os.path.abspath(__file__)))
 csvPath = scriptFolder + "/House Prices.csv"
 regressorFileName = "Regressor 1 .sav"
 regressorFilePath = scriptFolder + "/" + regressorFileName
+
+df = pd.read_csv(csvPath, delim_whitespace=True, header=None)
+dataset = df.values
+
+print("\n Data set Shape:", df.shape[0], "Records &", df.shape[1], "Columns")
