@@ -26,3 +26,13 @@ df = pd.read_csv(csvPath, delim_whitespace=True, header=None)
 dataset = df.values
 
 print("\n Data set Shape:", df.shape[0], "Records &", df.shape[1], "Columns")
+
+X = dataset[:, 0:13]
+y = dataset[:, 13]
+
+column_names = ["CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM", "AGE", "DIS", "RAD", "TAX", "PTRATIO", "B", "LSTAT", "MEDV"]
+
+df.columns = column_names
+
+correlation_matrix = df.corr()
+
