@@ -2,6 +2,7 @@ import  warnings
 import os
 import numpy as np
 import pandas as pd
+from IPython.core.pylabtools import figsize
 from sklearn.linear_model import  LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
@@ -39,4 +40,20 @@ correlation_matrix = df.corr()
 plt.figure(figsize=(12,10))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
 plt.title("Correlation Matrix Heatmap")
+plt.show()
+
+fig, axes = plt.subplots(nrows=4, ncols=4, figsize=(20,20))
+fig.suptitle("Histogram of Features", fontsize = 20)
+
+for i in [13,14,15]:
+    fig.delaxes(axes.flatten()[i])
+
+for i,col in enumerate(df.columns):
+    ax = axes.flatten()[i]
+    df[col].hist(ax = ax, bins=30, color = 'skyblue', edgecolor = 'black')
+    ax.set_title(col)
+    ax.grid(False)
+
+plt.tight_layout()
+plt.subplots_adjust(top=0.95)
 plt.show()
