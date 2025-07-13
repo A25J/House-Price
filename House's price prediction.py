@@ -112,3 +112,10 @@ print("\t RMSE:", round(rmse, 2), "k$")
 print("\t MAE: ", round(mae, 2), "k$")
 print("\t R-Squared:", round(r2, 2))
 print(Style.RESET_ALL)
+
+print("\n Predicting The Top 10 Rows In The Data Set:")
+print("\n Row \t Observed y \t Predicted y \t | Observed y - Predicted y |")
+print(" --------------------------------------------------------------------")
+for i in range(10):
+    print("", i, "\t\t", y[i], "\t\t\t", round(yPredicted[i], 1), "\t\t\t",
+          round(abs(y[i] - yPredicted[i]), 1))
