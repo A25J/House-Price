@@ -101,3 +101,14 @@ bestRegressor.fit(X,y)
 
 pickle.dump(bestRegressor, open(regressorFilePath, "wb"))
 print(Fore.BLUE + "\n Final Regressor saved to Disk As: '" + regressorFileName + "'")
+bestRegressor = pickle.load(open(regressorFilePath, "rb"))
+yPredicted = bestRegressor.predict(X)
+r2 = r2_score(y, yPredicted)  # R2: Coefficient of Determination
+mae = mean_absolute_error(y, yPredicted)  # MAE: Mean Absolute Error
+mse = mean_squared_error(y, yPredicted)  # MSE: Mean Squared Error
+rmse = np.sqrt(mse)  # RMSE: Root Mean Squared Error
+print(Fore.GREEN + " Final Regressor Metrics")
+print("\t RMSE:", round(rmse, 2), "k$")
+print("\t MAE: ", round(mae, 2), "k$")
+print("\t R-Squared:", round(r2, 2))
+print(Style.RESET_ALL)
