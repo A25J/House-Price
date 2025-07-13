@@ -81,7 +81,7 @@ for code, name, regressor in regressors:
     mse = mean_squared_error(yTest, yPredicted)
     rmse = np.sqrt(mse)
 
-    results.append((code, name, regressor, round(r2,2), round(mae, 2), round(mse, 2), round(rmse, 2)))
+    results.append((code, name, regressor, round(rmse,2), round(mae, 2), round(r2, 2)))
 
 results.sort(key=lambda i : i[3])
 print(Fore.RED,"\n# Regressor \t\t\t\t\t\tTest RMSE (K$) \t Test MAE(k$) \t Test R-Squared", Fore.WHITE)
