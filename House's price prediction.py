@@ -91,3 +91,8 @@ for r in results:
     s = r[0] + " - " +r[1]
     print("", i, " ", s, " "*(36-len(s)), " ", r[3], "\t\t\t", r[4], "\t\t\t", r[5])
     i+=1
+bestRegressor = results[0][2]
+bestRegressorCode = results[0][0]
+bestRegressorName = results[0][1]
+print(Fore.MAGENTA, "\n Best Regressor: ", bestRegressorCode, "-", bestRegressorName)
+print(Style.RESET_ALL)
