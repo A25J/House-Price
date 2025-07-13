@@ -96,3 +96,8 @@ bestRegressorCode = results[0][0]
 bestRegressorName = results[0][1]
 print(Fore.MAGENTA, "\n Best Regressor: ", bestRegressorCode, "-", bestRegressorName)
 print(Style.RESET_ALL)
+
+bestRegressor.fit(X,y)
+
+pickle.dump(bestRegressor, open(regressorFilePath, "wb"))
+print(Fore.BLUE + "\n Final Regressor saved to Disk As: '" + regressorFileName + "'")
